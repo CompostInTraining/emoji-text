@@ -5,3 +5,5 @@ just a dumb webpage thinger that generates mastodon-style emotes (or regional_de
 that's it
 
 it's pretty dumb
+
+[i host it here](https://szy.io/et)
