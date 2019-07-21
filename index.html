@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  
+  <title>emote text generator</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="column"><h1>Emote Text Generator</h1></div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <form>
+          <fieldset>
+            <label for="emoteType">Text Emote</label>
+            <select id="emoteType">
+              <option value="hacker">Hacker Text (hacker)</option>
+              <option value="sm64">Donkey Kong (sm64)</option>
+              <option value="emoji">Emoji (regonal_indicator)</option>
+            </select>
+            <textarea placeholder="Input Text" id="inputBox"></textarea>
+            <textarea id="outputBox" disabled></textarea>
+            <a class="button" id="copyButton">Copy</a>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><a href="https://mastodon.technology/@mdszy">mark</a> made this. <a href="https://liberapay.com/mdszy/">tips if you hate money</a></div>
+</body>
+</html>
