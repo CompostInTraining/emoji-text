@@ -43,6 +43,12 @@ var replaceMapping = {
     replace: ':regional_indicator_$&: ',
     postReplaceMatch: [ /regional_indicator_0/g, /regional_indicator_1/g, /regional_indicator_2/g, /regional_indicator_3/g, /regional_indicator_4/g, /regional_indicator_5/g, /regional_indicator_6/g, /regional_indicator_7/g, /regional_indicator_8/g, /regional_indicator_9/g, /regional_indicator_#/g, /regional_indicator_\*/g, /regional_indicator_b/g ],
     postReplace: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'hash', 'keycap_star', 'b' ]
+  },
+  clapping: {
+    regexp: /\s/g,
+    replace: '👏',
+    postReplaceMatch: [ /$/ ],
+    postReplace: [ '👏' ]
   }
 }
 
