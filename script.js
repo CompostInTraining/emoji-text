@@ -49,6 +49,10 @@ var replaceMapping = {
     replace: '👏',
     postReplaceMatch: [ /$/ ],
     postReplace: [ '👏' ]
+  },
+  spaced: {
+    regexp: /./g,
+    replace: '$& '
   }
 }
 
@@ -57,7 +61,6 @@ function updateOutput() {
   let selectedEmote = $('#emoteType').val();
   
   let mapping = replaceMapping[selectedEmote];
-  
   let regexp        = mapping.regexp;
   let replaceStr    = mapping.replace;
   let outString     = inString.replace(regexp, replaceStr).toLowerCase();
