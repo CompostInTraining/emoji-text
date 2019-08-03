@@ -29,32 +29,65 @@ function copyTextToClipboard(text) {
 
 var replaceMapping = {
   hacker: {
-    regexp: /[A-Za-z]/g, 
-    replace: ':hacker_$&: '
+    regexp: /[A-Za-z]/g,
+    replace: ":hacker_$&: ",
+    downcase: true
   },
   sm64: {
-    regexp: /[A-Za-z0-9'"]/g, 
-    replace: ':sm64_$&: ',
+    regexp: /[A-Za-z0-9'"]/g,
+    replace: ":sm64_$&: ",
     postReplaceMatch: [/"/g, /'/g],
-    postReplace: ['dblquote', 'quote']
+    postReplace: ["dblquote", "quote"],
+    downcase: true
   },
   emoji: {
     regexp: /[A-Za-z0-9#\*]/g,
-    replace: ':regional_indicator_$&: ',
-    postReplaceMatch: [ /regional_indicator_0/g, /regional_indicator_1/g, /regional_indicator_2/g, /regional_indicator_3/g, /regional_indicator_4/g, /regional_indicator_5/g, /regional_indicator_6/g, /regional_indicator_7/g, /regional_indicator_8/g, /regional_indicator_9/g, /regional_indicator_#/g, /regional_indicator_\*/g, /regional_indicator_b/g ],
-    postReplace: ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'hash', 'keycap_star', 'b' ]
+    replace: ":regional_indicator_$&: ",
+    postReplaceMatch: [
+      /regional_indicator_0/g,
+      /regional_indicator_1/g,
+      /regional_indicator_2/g,
+      /regional_indicator_3/g,
+      /regional_indicator_4/g,
+      /regional_indicator_5/g,
+      /regional_indicator_6/g,
+      /regional_indicator_7/g,
+      /regional_indicator_8/g,
+      /regional_indicator_9/g,
+      /regional_indicator_#/g,
+      /regional_indicator_\*/g,
+      /regional_indicator_b/g
+    ],
+    postReplace: [
+      "zero",
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "hash",
+      "keycap_star",
+      "b"
+    ],
+    downcase: true
   },
   clapping: {
     regexp: /\s/g,
-    replace: '👏',
-    postReplaceMatch: [ /$/ ],
-    postReplace: [ '👏' ]
+    replace: "👏",
+    postReplaceMatch: [/$/],
+    postReplace: ["👏"],
+    downcase: false
   },
   spaced: {
     regexp: /./g,
-    replace: '$& '
+    replace: "$& ",
+    downcase: false
   }
-}
+};
 
 function updateOutput() {
   let inString      = $('#inputBox').val();
@@ -63,7 +96,11 @@ function updateOutput() {
   let mapping = replaceMapping[selectedEmote];
   let regexp        = mapping.regexp;
   let replaceStr    = mapping.replace;
-  let outString     = inString.replace(regexp, replaceStr).toLowerCase();
+  let outString     = inString.replace(regexp, replaceStr);
+
+  if(mapping.downcase === true) {
+    outString = outString.toLowerCase();
+  }
  
   if(mapping.postReplaceMatch) {
     for(let i = 0; i < mapping.postReplaceMatch.length; i++) {
