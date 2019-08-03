@@ -6,11 +6,11 @@ function fallbackCopyTextToClipboard(text) {
   textArea.select();
 
   try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Fallback: Copying text command was ' + msg);
+    var successful = document.execCommand("copy");
+    var msg = successful ? "successful" : "unsuccessful";
+    console.log("Fallback: Copying text command was " + msg);
   } catch (err) {
-    console.error('Fallback: Oops, unable to copy', err);
+    console.error("Fallback: Oops, unable to copy", err);
   }
 
   document.body.removeChild(textArea);
@@ -20,11 +20,14 @@ function copyTextToClipboard(text) {
     fallbackCopyTextToClipboard(text);
     return;
   }
-  navigator.clipboard.writeText(text).then(function() {
-    console.log('Async: Copying to clipboard was successful!');
-  }, function(err) {
-    console.error('Async: Could not copy text: ', err);
-  });
+  navigator.clipboard.writeText(text).then(
+    function() {
+      console.log("Async: Copying to clipboard was successful!");
+    },
+    function(err) {
+      console.error("Async: Could not copy text: ", err);
+    }
+  );
 }
 
 var replaceMapping = {
@@ -90,37 +93,40 @@ var replaceMapping = {
 };
 
 function updateOutput() {
-  let inString      = $('#inputBox').val();
-  let selectedEmote = $('#emoteType').val();
-  
-  let mapping = replaceMapping[selectedEmote];
-  let regexp        = mapping.regexp;
-  let replaceStr    = mapping.replace;
-  let outString     = inString.replace(regexp, replaceStr);
+  let inString = $("#inputBox").val();
+  let selectedEmote = $("#emoteType").val();
 
-  if(mapping.downcase === true) {
+  let mapping = replaceMapping[selectedEmote];
+  let regexp = mapping.regexp;
+  let replaceStr = mapping.replace;
+  let outString = inString.replace(regexp, replaceStr);
+
+  if (mapping.downcase === true) {
     outString = outString.toLowerCase();
   }
- 
-  if(mapping.postReplaceMatch) {
-    for(let i = 0; i < mapping.postReplaceMatch.length; i++) {
-      outString = outString.replace(mapping.postReplaceMatch[i], mapping.postReplace[i]);
+
+  if (mapping.postReplaceMatch) {
+    for (let i = 0; i < mapping.postReplaceMatch.length; i++) {
+      outString = outString.replace(
+        mapping.postReplaceMatch[i],
+        mapping.postReplace[i]
+      );
     }
   }
-  
-  $('#outputBox').val(outString.trim());
+
+  $("#outputBox").val(outString.trim());
 }
 
 $(document).ready(function() {
-  $('#inputBox').on('input propertychange', function(e) {
+  $("#inputBox").on("input propertychange", function(e) {
     updateOutput();
   });
-  
-  $('#emoteType').change(function(e) {
+
+  $("#emoteType").change(function(e) {
     updateOutput();
   });
-  
-  $('#copyButton').on('click', function(e) {
-    copyTextToClipboard($('#outputBox').val());
+
+  $("#copyButton").on("click", function(e) {
+    copyTextToClipboard($("#outputBox").val());
   });
 });
