@@ -11,3 +11,11 @@ textarea {
   background-color: #efefef;
   text-align: center;
 }
+
+.liberapay-badge {
+  display: inline;
+  vertical-align: middle;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: auto;
+}
