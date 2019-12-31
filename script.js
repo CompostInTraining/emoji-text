@@ -33,19 +33,19 @@ function copyTextToClipboard(text) {
 var replaceMapping = {
   hacker: {
     regexp: /[A-Za-z]/g,
-    replace: ":hacker_$&: ",
+    replace: ":hacker_$&:​",
     downcase: true
   },
   sm64: {
-    regexp: /[A-Za-z0-9'"]/g,
-    replace: ":sm64_$&: ",
-    postReplaceMatch: [/"/g, /'/g],
-    postReplace: ["dblquote", "quote"],
+    regexp: /[A-Za-z0-9'"\?]/g,
+    replace: ":sm64_$&:​",
+    postReplaceMatch: [/"/g, /'/g, /\?/g],
+    postReplace: ["dblquote", "quote", "question"],
     downcase: true
   },
   emoji: {
     regexp: /[A-Za-z0-9#\*]/g,
-    replace: ":regional_indicator_$&: ",
+    replace: ":regional_indicator_$&:​",
     postReplaceMatch: [
       /regional_indicator_0/g,
       /regional_indicator_1/g,
@@ -83,6 +83,13 @@ var replaceMapping = {
     replace: "👏",
     postReplaceMatch: [/$/],
     postReplace: ["👏"],
+    downcase: false
+  },
+  bun: {
+    regexp: /\s/g,
+    replace: " :bun: ",
+    postReplaceMatch: [/$/],
+    postReplace: [" :bun: "],
     downcase: false
   },
   spaced: {
