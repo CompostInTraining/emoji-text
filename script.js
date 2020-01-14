@@ -36,6 +36,12 @@ var replaceMapping = {
     replace: ":hacker_$&:​",
     downcase: true
   },
+  lazer: {
+    regexp: /[A-Za-z0-9]/g,
+    replace: ":lazer_$&:​",
+    downcase: false,
+    preUpcase: true
+  },
   sm64: {
     regexp: /[A-Za-z0-9'"\?]/g,
     replace: ":sm64_$&:​",
@@ -101,11 +107,17 @@ var replaceMapping = {
 
 function updateOutput() {
   let inString = $("#inputBox").val();
-  let selectedEmote = $("#emoteType").val();
+  const selectedEmote = $("#emoteType").val();
 
-  let mapping = replaceMapping[selectedEmote];
-  let regexp = mapping.regexp;
-  let replaceStr = mapping.replace;
+
+  const mapping = replaceMapping[selectedEmote];
+  const regexp = mapping.regexp;
+  const replaceStr = mapping.replace;
+
+  if(mapping.preUpcase === true) {
+    inString = inString.toUpperCase();
+  }
+
   let outString = inString.replace(regexp, replaceStr);
 
   if (mapping.downcase === true) {
@@ -120,8 +132,10 @@ function updateOutput() {
       );
     }
   }
-
-  $("#outputBox").val(outString.trim());
+  const finalString = outString.trim();
+  
+  $("#chars").text("Characters: " + finalString.length);
+  $("#outputBox").val(finalString);
 }
 
 $(document).ready(function() {
