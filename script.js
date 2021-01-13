@@ -102,7 +102,35 @@ var replaceMapping = {
     regexp: /./g,
     replace: "$& ",
     downcase: false
+  },
+  eightbit: {
+    regexp: /[A-Za-z]/g,
+    replace: ":8b_$&:​",
+    downcase: true
+  },
+  jhg: {
+    regexp: /[A-Za-z]/g,
+    replace: ":jhg_$&:​",
+    downcase: true
+  },
+  tp: {
+    regexp: /[A-Za-z]/g,
+    replace: ":tp_$&:​",
+    downcase: true
+  },
+  smb: {
+    regexp: /[A-Za-z]/g,
+    replace: ":smb_$&:​",
+    downcase: true
+  },
+  spooky: {
+    regexp: /[A-Za-z]/g,
+    replace: ":rhg_$&:​",
+    downcase: true,
+    postReplaceMatch: [/\?/],
+    postReplace: "ques"
   }
+
 };
 
 function updateOutput() {
